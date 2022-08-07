@@ -56,15 +56,17 @@ class _BodyState extends State<Body> {
               children: <Widget>[
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                  margin: EdgeInsets.symmetric(vertical: 85, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 85, horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).primaryColorLight,
                     boxShadow: [
                       BoxShadow(
                           color: Theme.of(context).hintColor.withOpacity(0.2),
-                          offset: Offset(0, 10),
+                          offset: const Offset(0, 10),
                           blurRadius: 20)
                     ],
                   ),
@@ -72,12 +74,12 @@ class _BodyState extends State<Body> {
                     key: globalFormKey,
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Text(
                           "SignUp",
                           style: Theme.of(context).textTheme.headline2,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: first_name,
                           keyboardType: TextInputType.name,
@@ -90,18 +92,21 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.person,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: last_name,
                           keyboardType: TextInputType.name,
@@ -114,18 +119,21 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.person,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: email,
                           keyboardType: TextInputType.emailAddress,
@@ -138,18 +146,21 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: mobile_no,
                           keyboardType: TextInputType.phone,
@@ -162,22 +173,25 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.phone,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: password,
-                          style:
-                              TextStyle(color: Theme.of(context).accentColor),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary),
                           keyboardType: TextInputType.text,
                           // onSaved: (input) => signUpRequest.password = input,
                           validator: (input) => input!.length < 8
@@ -189,14 +203,17 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.lock,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             suffixIcon: IconButton(
                               onPressed: () {
@@ -205,7 +222,8 @@ class _BodyState extends State<Body> {
                                 });
                               },
                               color: Theme.of(context)
-                                  .accentColor
+                                  .colorScheme
+                                  .secondary
                                   .withOpacity(0.4),
                               icon: Icon(hidePassword
                                   ? Icons.visibility_off
@@ -213,11 +231,11 @@ class _BodyState extends State<Body> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: confirm_password,
-                          style:
-                              TextStyle(color: Theme.of(context).accentColor),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary),
                           keyboardType: TextInputType.text,
                           // onSaved: (input) =>
                           // signUpRequest.confirmPassword = input,
@@ -230,14 +248,15 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context).accentColor)),
                             prefixIcon: Icon(
                               Icons.lock,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             suffixIcon: IconButton(
                               onPressed: () {
@@ -246,7 +265,8 @@ class _BodyState extends State<Body> {
                                 });
                               },
                               color: Theme.of(context)
-                                  .accentColor
+                                  .colorScheme
+                                  .secondary
                                   .withOpacity(0.4),
                               icon: Icon(hideconfirmpassword
                                   ? Icons.visibility_off
@@ -254,19 +274,19 @@ class _BodyState extends State<Body> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         FlatButton(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 80),
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             "SignUp",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                           color: Theme.of(context).accentColor,
-                          shape: StadiumBorder(),
+                          shape: const StadiumBorder(),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         AlreadyHaveAnAccountCheck(
                             login: false,
                             press: () {
@@ -279,7 +299,7 @@ class _BodyState extends State<Body> {
                                 ),
                               );
                             }),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                       ],
                     ),
                   ),
@@ -292,71 +312,3 @@ class _BodyState extends State<Body> {
     );
   }
 }
-
-// class Body extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     Size size = MediaQuery.of(context).size;
-//     return Background(
-//       child: SingleChildScrollView(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text(
-//               "SIGNUP",
-//               style: TextStyle(fontWeight: FontWeight.bold),
-//             ),
-//             SizedBox(height: size.height * 0.03),
-//             SvgPicture.asset(
-//               "assets/icons/signup.svg",
-//               height: size.height * 0.35,
-//             ),
-//             RoundedInputField(
-//               hintText: "Your Email",
-//               onChanged: (value) {},
-//             ),
-//             RoundedPasswordField(
-//               onChanged: (value) {},
-//             ),
-//             RoundedButton(
-//               text: "SIGNUP",
-//               press: () {},
-//             ),
-//             SizedBox(height: size.height * 0.03),
-//             AlreadyHaveAnAccountCheck(
-//               login: false,
-//               press: () {
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) {
-//                       return LoginScreen();
-//                     },
-//                   ),
-//                 );
-//               },
-//             ),
-//             OrDivider(),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: <Widget>[
-//                 SocalIcon(
-//                   iconSrc: "assets/icons/facebook.svg",
-//                   press: () {},
-//                 ),
-//                 SocalIcon(
-//                   iconSrc: "assets/icons/twitter.svg",
-//                   press: () {},
-//                 ),
-//                 SocalIcon(
-//                   iconSrc: "assets/icons/google-plus.svg",
-//                   press: () {},
-//                 ),
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

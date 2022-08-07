@@ -51,15 +51,17 @@ class _BodyState extends State<Body> {
               children: <Widget>[
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                  margin: EdgeInsets.symmetric(vertical: 85, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 85, horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).primaryColorLight,
                     boxShadow: [
                       BoxShadow(
                           color: Theme.of(context).hintColor.withOpacity(0.2),
-                          offset: Offset(0, 10),
+                          offset: const Offset(0, 10),
                           blurRadius: 20)
                     ],
                   ),
@@ -67,12 +69,12 @@ class _BodyState extends State<Body> {
                     key: globalFormKey,
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Text(
                           "Login",
                           style: Theme.of(context).textTheme.headline2,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: emailcontroller,
                           keyboardType: TextInputType.phone,
@@ -91,18 +93,20 @@ class _BodyState extends State<Body> {
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: passwordcontroller,
-                          style:
-                              TextStyle(color: Theme.of(context).accentColor),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary),
                           keyboardType: TextInputType.text,
                           // onSaved: (input) => loginRequest.password = input,
                           validator: (input) => input!.isEmpty
@@ -114,14 +118,17 @@ class _BodyState extends State<Body> {
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.2))),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Theme.of(context).accentColor)),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             prefixIcon: Icon(
                               Icons.lock,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             suffixIcon: IconButton(
                               onPressed: () {
@@ -130,7 +137,8 @@ class _BodyState extends State<Body> {
                                 });
                               },
                               color: Theme.of(context)
-                                  .accentColor
+                                  .colorScheme
+                                  .secondary
                                   .withOpacity(0.4),
                               icon: Icon(hidePassword
                                   ? Icons.visibility_off
@@ -138,19 +146,19 @@ class _BodyState extends State<Body> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         FlatButton(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 80),
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             "Login",
                             style: TextStyle(color: Colors.white),
                           ),
-                          color: Theme.of(context).accentColor,
-                          shape: StadiumBorder(),
+                          color: Theme.of(context).colorScheme.secondary,
+                          shape: const StadiumBorder(),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         AlreadyHaveAnAccountCheck(press: () {
                           Navigator.push(
                             context,
@@ -161,7 +169,7 @@ class _BodyState extends State<Body> {
                             ),
                           );
                         }),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                       ],
                     ),
                   ),
