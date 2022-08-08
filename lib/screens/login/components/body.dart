@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '/Screens/Login/components/background.dart';
 import '/screens/signup/signup.dart';
 import '/components/already_have_an_account_acheck.dart';
+import '/screens/add_device/add_device.dart';
 import '/components/rounded_button.dart';
 import '/components/rounded_input_field.dart';
 import '/components/rounded_password_field.dart';
@@ -150,7 +151,12 @@ class _BodyState extends State<Body> {
                         FlatButton(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 80),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return DeviceAdd();
+                            }));
+                          },
                           child: const Text(
                             "Login",
                             style: TextStyle(color: Colors.white),

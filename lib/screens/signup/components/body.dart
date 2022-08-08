@@ -4,6 +4,7 @@ import '/Screens/Signup/components/background.dart';
 import '/Screens/Signup/components/or_divider.dart';
 import '/Screens/Signup/components/social_icon.dart';
 import '/components/already_have_an_account_acheck.dart';
+import '/screens/account_verify/verify_account.dart';
 import '/components/rounded_button.dart';
 import '/components/rounded_input_field.dart';
 import '/components/rounded_password_field.dart';
@@ -278,7 +279,12 @@ class _BodyState extends State<Body> {
                         FlatButton(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 80),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return VerifyAccount();
+                            }));
+                          },
                           child: const Text(
                             "SignUp",
                             style: const TextStyle(color: Colors.white),
