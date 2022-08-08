@@ -3,7 +3,7 @@ import 'dart:convert';
 import '/models/SignUpModel/signup_request.dart';
 import '/models/SignUpModel/signup_response.dart';
 
-class APIService {
+class SignUpAPIService {
   Future<SignUpResponse> signup(SignUpRequest signUpRequest) async {
     String url = "http://care-engg.com/api/signup";
 

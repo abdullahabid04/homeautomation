@@ -3,7 +3,7 @@ import 'dart:convert';
 import '/models/LoginModel/login_request.dart';
 import '/models/LoginModel/login_response.dart';
 
-class APIService {
+class LoginAPIService {
   Future<LoginResponse> login(LoginRequest loginRequest) async {
     String url = "http://care-engg.com/api/login";
 

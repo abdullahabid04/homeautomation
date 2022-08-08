@@ -3,7 +3,7 @@ import 'dart:convert';
 import '/models/VerificationModel/verification_request.dart';
 import '/models/VerificationModel/verification_response.dart';
 
-class APIService {
+class VerifyAPIService {
   Future<VerificationResponse> verify(
       VerificationRequest verificationRequest) async {
     String url = "http://care-engg.com/api/verify";
