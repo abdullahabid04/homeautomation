@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import '/screens/add_device/first_add_device.dart.dart';
 import '/Screens/Login/components/background.dart';
 import '/screens/signup/signup.dart';
 import '/components/already_have_an_account_acheck.dart';
@@ -154,7 +155,7 @@ class _BodyState extends State<Body> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return DeviceAdd();
+                              return FirstDevice();
                             }));
                           },
                           child: const Text(

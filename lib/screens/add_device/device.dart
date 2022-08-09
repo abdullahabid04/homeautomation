@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import '/screens/add_device/product_specs.dart';
+import '/models/ProductsModel/Products.dart';
 
-class DeviceInfo extends StatefulWidget {
-  const DeviceInfo({Key? key}) : super(key: key);
+class ProductsList extends StatefulWidget {
+  final getProducts;
+
+  const ProductsList({Key? key, required this.getProducts}) : super(key: key);
 
   @override
-  State<DeviceInfo> createState() => _DeviceInfoState();
+  State<ProductsList> createState() => _ProductsListState();
 }
 
-class _DeviceInfoState extends State<DeviceInfo> {
+class _ProductsListState extends State<ProductsList> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,11 +25,19 @@ class _DeviceInfoState extends State<DeviceInfo> {
               ),
             ),
             child: ListTile(
-              title: Text("Switch"),
-              subtitle: Text("two sockets with two buttons"),
-              trailing: Icon(Icons.add),
-              leading: Image.network(
-                  "https://th.bing.com/th/id/R.cd37c707f3b755f2f4f56b34f9251b34?rik=rCgctyQvX%2bnzYQ&pid=ImgRaw&r=0&sres=1&sresct=1"),
+              title: Text(widget.getProducts.productName),
+              subtitle: Text(widget.getProducts.productDesc),
+              trailing: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) {
+                      return ProductSpecs(
+                        product: widget.getProducts,
+                      );
+                    })));
+                  },
+                  child: Icon(Icons.add)),
+              leading: Image.network(widget.getProducts.productImage),
             )),
       ],
     );
