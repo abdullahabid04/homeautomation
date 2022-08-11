@@ -12,19 +12,20 @@ class ConnectDevice extends StatefulWidget {
 class _ConnectDeviceState extends State<ConnectDevice> {
   final String SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
   final String CHARACTERISTIC_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
-  final String TARGET_DEVICE_NAME = "ESP32 THAT PROJECT";
-
+  final String TARGET_DEVICE_NAME = "ESP32-BLE-Server";
   FlutterBlue flutterBlue = FlutterBlue.instance;
   late StreamSubscription<ScanResult> scanSubscription;
-
   late BluetoothDevice targetDevice;
   BluetoothCharacteristic? targetCharacteristic;
-
   String connectionText = "";
+  bool _isScanning = false;
 
   @override
   void initState() {
     super.initState();
+    flutterBlue.isScanning.listen((isScanning) {
+      _isScanning = isScanning;
+    });
     startScan();
   }
 
@@ -33,19 +34,35 @@ class _ConnectDeviceState extends State<ConnectDevice> {
       connectionText = "Start Scanning";
     });
 
-    scanSubscription = flutterBlue.scan().listen((scanResult) {
-      print(scanResult.device.name);
-      if (scanResult.device.name.contains(TARGET_DEVICE_NAME)) {
-        stopScan();
+    if (!_isScanning) {
+      scanSubscription =
+          flutterBlue.scan(scanMode: ScanMode.lowPower).listen((scanResult) {
+        print(scanResult.device.name);
+        if (scanResult.device.name.contains(TARGET_DEVICE_NAME)) {
+          flutterBlue.connectedDevices.then((value) {
+            if (value.contains(TARGET_DEVICE_NAME)) {
+              setState(() {
+                connectionText = "Found Target Device";
+              });
 
-        setState(() {
-          connectionText = "Found Target Device";
-        });
+              stopScan();
+              targetDevice = scanResult.device;
+              discoverServices();
+            } else {
+              setState(() {
+                connectionText = "Found Target Device";
+              });
 
-        targetDevice = scanResult.device;
-        connectToDevice();
-      }
-    }, onDone: () => stopScan());
+              stopScan();
+              targetDevice = scanResult.device;
+              connectToDevice();
+            }
+          });
+        }
+      }, onDone: () => stopScan(), cancelOnError: true);
+    } else {
+      stopScan();
+    }
   }
 
   stopScan() {
@@ -56,17 +73,13 @@ class _ConnectDeviceState extends State<ConnectDevice> {
     if (targetDevice == null) {
       return;
     }
-
     setState(() {
       connectionText = "Device Connecting";
     });
-
     await targetDevice.connect();
-
     setState(() {
       connectionText = "Device Connected";
     });
-
     discoverServices();
   }
 
@@ -74,9 +87,7 @@ class _ConnectDeviceState extends State<ConnectDevice> {
     if (targetDevice == null) {
       return;
     }
-
     targetDevice.disconnect();
-
     setState(() {
       connectionText = "Device Disconnected";
     });
@@ -86,7 +97,6 @@ class _ConnectDeviceState extends State<ConnectDevice> {
     if (targetDevice == null) {
       return;
     }
-
     List<BluetoothService> services = await targetDevice.discoverServices();
     services.forEach((service) {
       if (service.uuid.toString() == SERVICE_UUID) {
@@ -103,8 +113,9 @@ class _ConnectDeviceState extends State<ConnectDevice> {
   }
 
   writeData(String data) async {
-    if (targetCharacteristic == null) return;
-
+    if (targetCharacteristic == null) {
+      return;
+    }
     List<int> bytes = utf8.encode(data);
     await targetCharacteristic?.write(bytes);
   }
@@ -116,7 +127,9 @@ class _ConnectDeviceState extends State<ConnectDevice> {
   }
 
   submitAction() {
-    var wifiData = '${wifiNameController.text},${wifiPasswordController.text}';
+    String wifiData =
+        '${wifiNameController.text},${wifiPasswordController.text}';
+    print(wifiData);
     writeData(wifiData);
   }
 
@@ -131,11 +144,8 @@ class _ConnectDeviceState extends State<ConnectDevice> {
       ),
       body: Container(
           child: targetCharacteristic == null
-              ? Center(
-                  child: Text(
-                    "Waiting...",
-                    style: TextStyle(fontSize: 34, color: Colors.red),
-                  ),
+              ? const Center(
+                  child: CircularProgressIndicator(),
                 )
               : Column(
                   children: <Widget>[
@@ -143,14 +153,16 @@ class _ConnectDeviceState extends State<ConnectDevice> {
                       padding: const EdgeInsets.all(16),
                       child: TextField(
                         controller: wifiNameController,
-                        decoration: InputDecoration(labelText: 'Wifi Name'),
+                        decoration:
+                            const InputDecoration(labelText: 'Wifi Name'),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: TextField(
                         controller: wifiPasswordController,
-                        decoration: InputDecoration(labelText: 'Wifi Password'),
+                        decoration:
+                            const InputDecoration(labelText: 'Wifi Password'),
                       ),
                     ),
                     Padding(
@@ -158,7 +170,7 @@ class _ConnectDeviceState extends State<ConnectDevice> {
                       child: RaisedButton(
                         onPressed: submitAction,
                         color: Colors.indigoAccent,
-                        child: Text('Submit'),
+                        child: const Text('Submit'),
                       ),
                     )
                   ],
