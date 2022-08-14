@@ -34,35 +34,31 @@ class _ConnectDeviceState extends State<ConnectDevice> {
       connectionText = "Start Scanning";
     });
 
-    if (!_isScanning) {
-      scanSubscription =
-          flutterBlue.scan(scanMode: ScanMode.lowPower).listen((scanResult) {
-        print(scanResult.device.name);
-        if (scanResult.device.name.contains(TARGET_DEVICE_NAME)) {
-          flutterBlue.connectedDevices.then((value) {
-            if (value.contains(TARGET_DEVICE_NAME)) {
-              setState(() {
-                connectionText = "Found Target Device";
-              });
+    scanSubscription =
+        flutterBlue.scan(scanMode: ScanMode.lowPower).listen((scanResult) {
+      print(scanResult.device.name);
+      if (scanResult.device.name.contains(TARGET_DEVICE_NAME)) {
+        flutterBlue.connectedDevices.then((value) {
+          if (value.contains(TARGET_DEVICE_NAME)) {
+            setState(() {
+              connectionText = "Found Target Device";
+            });
 
-              stopScan();
-              targetDevice = scanResult.device;
-              discoverServices();
-            } else {
-              setState(() {
-                connectionText = "Found Target Device";
-              });
+            stopScan();
+            targetDevice = scanResult.device;
+            discoverServices();
+          } else {
+            setState(() {
+              connectionText = "Found Target Device";
+            });
 
-              stopScan();
-              targetDevice = scanResult.device;
-              connectToDevice();
-            }
-          });
-        }
-      }, onDone: () => stopScan(), cancelOnError: true);
-    } else {
-      stopScan();
-    }
+            stopScan();
+            targetDevice = scanResult.device;
+            connectToDevice();
+          }
+        });
+      }
+    }, onDone: () => stopScan(), cancelOnError: true);
   }
 
   stopScan() {
@@ -128,7 +124,7 @@ class _ConnectDeviceState extends State<ConnectDevice> {
 
   submitAction() {
     String wifiData =
-        '${wifiNameController.text},${wifiPasswordController.text}';
+        '${wifiNameController.value.text.toString()},${wifiPasswordController.value.text.toString()}';
     print(wifiData);
     writeData(wifiData);
   }
