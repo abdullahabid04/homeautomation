@@ -38,30 +38,18 @@ class _ConnectDeviceState extends State<ConnectDevice> {
         flutterBlue.scan(scanMode: ScanMode.lowPower).listen((scanResult) {
       print(scanResult.device.name);
       if (scanResult.device.name.contains(TARGET_DEVICE_NAME)) {
-        flutterBlue.connectedDevices.then((value) {
-          if (value.contains(TARGET_DEVICE_NAME)) {
-            setState(() {
-              connectionText = "Found Target Device";
-            });
-
-            stopScan();
-            targetDevice = scanResult.device;
-            discoverServices();
-          } else {
-            setState(() {
-              connectionText = "Found Target Device";
-            });
-
-            stopScan();
-            targetDevice = scanResult.device;
-            connectToDevice();
-          }
+        setState(() {
+          connectionText = "Found Target Device";
         });
+        targetDevice = scanResult.device;
+        stopScan();
+        connectToDevice();
       }
     }, onDone: () => stopScan(), cancelOnError: true);
   }
 
   stopScan() {
+    flutterBlue.stopScan();
     scanSubscription.cancel();
   }
 
@@ -163,7 +151,7 @@ class _ConnectDeviceState extends State<ConnectDevice> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16),
-                      child: RaisedButton(
+                      child: FlatButton(
                         onPressed: submitAction,
                         color: Colors.indigoAccent,
                         child: const Text('Submit'),
