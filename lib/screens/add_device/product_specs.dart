@@ -63,18 +63,6 @@ class _ProductSpecsState extends State<ProductSpecs> {
                     height: 20,
                   ),
                   Text(
-                    widget.product.productDesc,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        overflow: TextOverflow.clip,
-                        fontSize: 17,
-                        letterSpacing: 2.0,
-                        wordSpacing: 7.0),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
                     widget.product.productSpecs,
                     textAlign: TextAlign.center,
                     style: const TextStyle(

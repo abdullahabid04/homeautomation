@@ -29,28 +29,22 @@ class GetProducts {
 
 class Products {
   String? id;
-  String? productId;
   String? productName;
   String? productSpecs;
-  String? productDesc;
   String? productImage;
   String? dateCreated;
 
   Products(
       {this.id,
-      this.productId,
       this.productName,
       this.productSpecs,
-      this.productDesc,
       this.productImage,
       this.dateCreated});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    productId = json['product_id'];
     productName = json['product_name'];
     productSpecs = json['product_specs'];
-    productDesc = json['product_desc'];
     productImage = json['product_image'];
     dateCreated = json['date_created'];
   }
@@ -58,10 +52,8 @@ class Products {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['product_id'] = this.productId;
     data['product_name'] = this.productName;
     data['product_specs'] = this.productSpecs;
-    data['product_desc'] = this.productDesc;
     data['product_image'] = this.productImage;
     data['date_created'] = this.dateCreated;
     return data;

@@ -26,7 +26,7 @@ class _ProductsListState extends State<ProductsList> {
             ),
             child: ListTile(
               title: Text(widget.getProducts.productName),
-              subtitle: Text(widget.getProducts.productDesc),
+              subtitle: Text(widget.getProducts.dateCreated),
               trailing: GestureDetector(
                   onTap: () {
                     Navigator.push(context,

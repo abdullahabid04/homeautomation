@@ -4,7 +4,7 @@ import '/models/ProductsModel/Products.dart';
 
 class GetProductsAPIService {
   Future<GetProducts> getallproducts() async {
-    String url = "http://care-engg.com/api/getproducts";
+    String url = "http://care-engg.com/api/getdevices";
 
     final response = await http.get(Uri.parse(url));
     //   if (response.statusCode == 200 || response.statusCode == 400) {

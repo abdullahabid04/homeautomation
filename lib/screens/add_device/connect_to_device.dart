@@ -26,6 +26,7 @@ class _ConnectDeviceState extends State<ConnectDevice> {
     flutterBlue.isScanning.listen((isScanning) {
       _isScanning = isScanning;
     });
+
     startScan();
   }
 
@@ -102,6 +103,12 @@ class _ConnectDeviceState extends State<ConnectDevice> {
     }
     List<int> bytes = utf8.encode(data);
     await targetCharacteristic?.write(bytes);
+  }
+
+  readData() async {
+    List<int>? bytes;
+    bytes = await targetCharacteristic?.read();
+    return utf8.decode(bytes!);
   }
 
   @override
